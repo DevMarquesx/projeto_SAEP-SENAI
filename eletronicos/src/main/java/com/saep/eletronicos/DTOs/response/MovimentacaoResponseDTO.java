@@ -1,19 +1,15 @@
 package com.saep.eletronicos.DTOs.response;
 
-import com.saep.eletronicos.Entities.TipoMovimentacao;
 import java.time.LocalDateTime;
 
 public record MovimentacaoResponseDTO(
-
         Long idMovimentacao,
-        TipoMovimentacao tipo,
-        Integer quantidade,
-        LocalDateTime dataHora,
-
-        // Detalhes para rastreabilidade
         Long idProduto,
         String nomeProduto,
-        Long idUsuarioResponsavel,
-        String nomeUsuarioResponsavel
-
+        String tipo, // String do Enum
+        Integer quantidade,
+        LocalDateTime dataHora,
+        String nomeUsuarioResponsavel,
+        Integer estoqueAtual, // novaQuantidade
+        Boolean alertaEstoqueMinimo
 ) {}

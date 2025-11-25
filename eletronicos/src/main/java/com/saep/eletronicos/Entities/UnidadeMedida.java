@@ -7,5 +7,6 @@ public enum UnidadeMedida {
     VOLTS,
     MHZ,
     KG,
+    UNIDADE,
     NENHUM
 }

@@ -2,7 +2,7 @@ package com.saep.eletronicos.Entities;
 
 import jakarta.persistence.*;
 import org.hibernate.envers.Audited;
-
+import org.hibernate.envers.RelationTargetAuditMode;
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -26,14 +26,16 @@ public class Produto {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal precoVenda;
 
-
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private Estoque estoque;
 
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ProdutoAtributo> atributos;
 

@@ -11,7 +11,7 @@ public class ProdutoCadastroRequestDTO {
     private String nome;
 
     @NotBlank(message = "O SKU é obrigatório.")
-    private String codigoSku;
+    public String codigoSku;
 
     private String fabricante;
 

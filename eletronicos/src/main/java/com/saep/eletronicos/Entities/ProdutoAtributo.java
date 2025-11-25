@@ -2,6 +2,7 @@ package com.saep.eletronicos.Entities;
 
 import jakarta.persistence.*;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode; // 👈 NOVA IMPORTAÇÃO
 
 @Entity
 @Table(name = "produto_atributo")
@@ -17,10 +18,14 @@ public class ProdutoAtributo {
     @JoinColumn(name = "id_produto")
     private Produto produto;
 
+    // 🚨 CORREÇÃO APLICADA AQUI:
+    // Informa ao Envers para não auditar a entidade de destino (AtributoEspecifico)
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @MapsId("idAtributo")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_atributo")
     private AtributoEspecifico atributoEspecifico;
+
     @Column(nullable = false, length = 100)
     private String valorAtributo;
 

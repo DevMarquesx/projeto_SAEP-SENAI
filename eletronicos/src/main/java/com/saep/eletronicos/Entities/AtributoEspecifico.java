@@ -12,13 +12,12 @@ public class AtributoEspecifico {
     private Long idAtributo;
 
     @Column(nullable = false, unique = true)
-    private String nomeAtributo; // Ex: Memória RAM, Resolução
+    private String nomeAtributo;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private UnidadeMedida unidadeMedida; // Ex: GB, POLEGADAS
+    @Column(nullable = false, length = 20)
+    private UnidadeMedida unidadeMedida;
 
-    // 🔗 Relacionamento Inverso: Um Atributo é usado em Muitos Registros de ProdutoAtributo
     @OneToMany(mappedBy = "atributoEspecifico", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ProdutoAtributo> produtosAtributos;
 
